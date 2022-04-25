@@ -2,17 +2,41 @@ import React, { Component } from "react";
 
 export default class HangGhe extends Component {
   renderSeats() {
-    let danhSachGhe = this.props.row.danhSachGhe;
-    return danhSachGhe.map((seat, index) => {
-      return (
-        <button className="ghe" key={index}>
-          {seat.soGhe}
-        </button>
-      );
-    });
+    if (this.props.row.hang === "") {
+      return this.props.row.danhSachGhe.map((seat, index) => {
+        return (
+          <button disabled="true" className="rowNumber" key={index}>
+            {seat.soGhe}
+          </button>
+        );
+      });
+    } else {
+      return this.props.row.danhSachGhe.map((seat, index) => {
+        if (seat.daDat === true) {
+          return (
+            <button disabled="true" className="ghe gheDuocChon" key={index}>
+              {seat.soGhe}
+            </button>
+          );
+        } else {
+          return (
+            <button className="ghe" key={index}>
+              {seat.soGhe}
+            </button>
+          );
+        }
+      });
+    }
   }
 
   render() {
-    return <div className="rowSeats">{this.renderSeats()}</div>;
+    return (
+      <div className="rowSeats">
+        <button disabled="true" className="firstChar">
+          {this.props.row.hang}
+        </button>
+        {this.renderSeats()}
+      </div>
+    );
   }
 }

@@ -8,7 +8,7 @@ export default class BaiTapDatVeXemPhim extends Component {
     return (
       <div className="app">
         <div className="overlay">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-8">
                 <Rap />

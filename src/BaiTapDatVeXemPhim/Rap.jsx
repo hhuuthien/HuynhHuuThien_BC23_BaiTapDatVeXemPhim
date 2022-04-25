@@ -15,6 +15,14 @@ export default class Rap extends Component {
         <h3 className="title">Đặt vé xem phim</h3>
         <div className="screen">Màn hình</div>
         <div className="seats">{this.renderRows()}</div>
+        <div className="type">
+          <button className="ghe"></button>
+          <span>Ghế chưa đặt</span>
+          <button className="ghe gheDangChon"></button>
+          <span>Ghế đang chọn</span>
+          <button className="ghe gheDuocChon"></button>
+          <span>Ghế đã đặt</span>
+        </div>
       </div>
     );
   }
