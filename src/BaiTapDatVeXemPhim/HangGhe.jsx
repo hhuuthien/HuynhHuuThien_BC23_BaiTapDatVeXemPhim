@@ -5,7 +5,7 @@ export default class HangGhe extends Component {
     if (this.props.row.hang === "") {
       return this.props.row.danhSachGhe.map((seat, index) => {
         return (
-          <button disabled="true" className="rowNumber" key={index}>
+          <button disabled className="rowNumber" key={index}>
             {seat.soGhe}
           </button>
         );
@@ -14,7 +14,7 @@ export default class HangGhe extends Component {
       return this.props.row.danhSachGhe.map((seat, index) => {
         if (seat.daDat === true) {
           return (
-            <button disabled="true" className="ghe gheDuocChon" key={index}>
+            <button disabled className="ghe gheDuocChon" key={index}>
               {seat.soGhe}
             </button>
           );
@@ -32,7 +32,7 @@ export default class HangGhe extends Component {
   render() {
     return (
       <div className="rowSeats">
-        <button disabled="true" className="firstChar">
+        <button disabled className="firstChar">
           {this.props.row.hang}
         </button>
         {this.renderSeats()}

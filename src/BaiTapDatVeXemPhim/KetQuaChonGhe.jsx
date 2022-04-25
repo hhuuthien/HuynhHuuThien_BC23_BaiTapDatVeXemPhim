@@ -7,9 +7,11 @@ export default class KetQuaChonGhe extends Component {
         <div className="title">Danh sách ghế bạn chọn</div>
         <table className="table table-bordered mt-5 text-white">
           <thead>
-            <th>Số ghế</th>
-            <th>Giá tiền</th>
-            <th></th>
+            <tr>
+              <th>Số ghế</th>
+              <th>Giá tiền</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
             <tr>
@@ -17,7 +19,7 @@ export default class KetQuaChonGhe extends Component {
               <td>75000</td>
               <td>
                 <button className="btn btn-danger">
-                  <i class="fa-solid fa-xmark"></i>
+                  <i className="fa-solid fa-xmark"></i>
                 </button>
               </td>
             </tr>
