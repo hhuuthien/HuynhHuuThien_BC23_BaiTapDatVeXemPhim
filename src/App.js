@@ -1,7 +1,8 @@
 import "./App.css";
+import BaiTapDatVeXemPhim from "./BaiTapDatVeXemPhim/BaiTapDatVeXemPhim.jsx";
 
 function App() {
-  return <div className="App"></div>;
+  return <BaiTapDatVeXemPhim />;
 }
 
 export default App;
