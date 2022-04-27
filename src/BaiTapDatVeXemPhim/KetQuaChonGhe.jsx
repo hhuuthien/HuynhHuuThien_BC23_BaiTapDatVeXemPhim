@@ -1,6 +1,41 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { huyGheAction } from "../redux/action/datVeXemPhimAction";
 
-export default class KetQuaChonGhe extends Component {
+class KetQuaChonGhe extends Component {
+  renderFooter() {
+    let total = this.props.danhSachGheDat.reduce((total, ghe) => {
+      return total + ghe.gia;
+    }, 0);
+
+    return (
+      <tr>
+        <td colSpan={3}>Tổng tiền: {total.toLocaleString()}</td>
+      </tr>
+    );
+  }
+
+  renderBody() {
+    return this.props.danhSachGheDat.map((seat, index) => {
+      return (
+        <tr key={index}>
+          <td>{seat.soGhe}</td>
+          <td>{seat.gia.toLocaleString()}</td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                this.props.dispatch(huyGheAction(seat.soGhe));
+              }}
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  }
+
   render() {
     return (
       <div className="result">
@@ -13,25 +48,18 @@ export default class KetQuaChonGhe extends Component {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>G12</td>
-              <td>75000</td>
-              <td>
-                <button className="btn btn-danger">
-                  <i className="fa-solid fa-xmark"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={2}>Tổng tiền</td>
-              <td>65000</td>
-            </tr>
-          </tfoot>
+          <tbody>{this.renderBody()}</tbody>
+          <tfoot>{this.renderFooter()}</tfoot>
         </table>
       </div>
     );
   }
 }
+
+const mapStateToProps = (rootReducer) => {
+  return {
+    danhSachGheDat: rootReducer.datVeXemPhimReducer.danhSachGheDat,
+  };
+};
+
+export default connect(mapStateToProps)(KetQuaChonGhe);
