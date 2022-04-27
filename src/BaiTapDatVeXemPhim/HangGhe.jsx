@@ -1,32 +1,38 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class HangGhe extends Component {
+class HangGhe extends Component {
   renderSeats() {
-    if (this.props.row.hang === "") {
-      return this.props.row.danhSachGhe.map((seat, index) => {
+    return this.props.row.danhSachGhe.map((seat, index) => {
+      if (seat.daDat === true) {
+        // Nếu là cam
         return (
-          <button disabled className="rowNumber" key={index}>
+          <button disabled className="ghe gheDuocChon" key={index}>
             {seat.soGhe}
           </button>
         );
-      });
-    } else {
-      return this.props.row.danhSachGhe.map((seat, index) => {
-        if (seat.daDat === true) {
-          return (
-            <button disabled className="ghe gheDuocChon" key={index}>
-              {seat.soGhe}
-            </button>
-          );
-        } else {
-          return (
-            <button className="ghe" key={index}>
-              {seat.soGhe}
-            </button>
-          );
-        }
-      });
-    }
+      } else {
+        // Không phải cam --> xanh hay trắng
+        let cssDangChon = "";
+        let gheDangChon = this.props.danhSachGheDat.find((ghe) => ghe.soGhe === seat.soGhe);
+        if (gheDangChon) cssDangChon = "gheDangChon";
+
+        return (
+          <button
+            className={`ghe ${cssDangChon}`}
+            key={index}
+            onClick={() => {
+              this.props.dispatch({
+                type: "SEAT_CLICKED",
+                seat,
+              });
+            }}
+          >
+            {seat.soGhe}
+          </button>
+        );
+      }
+    });
   }
 
   render() {
@@ -40,3 +46,11 @@ export default class HangGhe extends Component {
     );
   }
 }
+
+const mapStateToProps = (rootReducer) => {
+  return {
+    danhSachGheDat: rootReducer.datVeXemPhimReducer.danhSachGheDat,
+  };
+};
+
+export default connect(mapStateToProps)(HangGhe);
