@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from "redux";
-import { datVeXemPhimReducer } from "./datVeXemPhimReducer";
+import { datVeXemPhimReducer } from "./reducer/datVeXemPhimReducer";
 
 const rootReducer = combineReducers({
   datVeXemPhimReducer,

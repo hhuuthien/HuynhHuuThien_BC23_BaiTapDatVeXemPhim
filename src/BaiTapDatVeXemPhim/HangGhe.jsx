@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { datGheAction } from "../redux/action/datVeXemPhimAction";
 
 class HangGhe extends Component {
   renderSeats() {
@@ -22,10 +23,7 @@ class HangGhe extends Component {
             className={`ghe ${cssDangChon}`}
             key={index}
             onClick={() => {
-              this.props.dispatch({
-                type: "SEAT_CLICKED",
-                seat,
-              });
+              this.props.dispatch(datGheAction(seat));
             }}
           >
             {seat.soGhe}
